@@ -3,7 +3,6 @@ from .models import *
 from django.contrib import messages
 from django.apps import apps
 from django.contrib.auth import logout
-from django.views.decorators.cache import never_cache
 # Create your views here.
 @never_cache
 def todo(request):
