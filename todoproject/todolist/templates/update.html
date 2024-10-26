@@ -1,0 +1,14 @@
+<html>
+    <head>
+        <title>Update</title>
+    </head>
+    <body>
+        <form method="POST" action="{% url 'update_con' %}">
+            {%csrf_token%}
+            <label for="work">Edit the task:</label>
+            <input type="text" name="work" id="work" value="{{task}}">
+            <input type="hidden" name="id" id="id" value="{{id}}">
+            <button type="submit">Update</button>
+        </form>
+    </body>
+</html>

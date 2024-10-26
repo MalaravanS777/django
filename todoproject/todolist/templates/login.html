@@ -1,0 +1,31 @@
+<html>
+<head><title>Login Page</title></head>
+<body>
+    <h1>Login Page</h1>
+    
+    {% if messages %}
+        {% if messages|length > 2 %}
+            {% for message in messages %}
+                <div>
+                    {{message}}
+                </div>
+            {%endfor%}
+            <a href="{%url 'si' %}">Click here for sign up</a>
+        {%else%}
+            {% for message in messages %}
+                <div>
+                    {{message}}
+            </div>
+            {%endfor%}
+        {%endif%}
+    {%endif%}
+<form method="POST" action="{% url 'logindetails' %}">
+    {%csrf_token%}
+    <label for="email">Email</label>
+    <input type="email" name="email" id="email" requeired>
+    <label for="pass">Password</label>
+    <input type="text" name="pass" id="pass" required>
+    <button type="submit">log in</button>
+</form>
+</body>
+</html>

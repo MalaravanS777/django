@@ -1,0 +1,57 @@
+<html>
+
+<head>
+    <title>Todo list</title>
+</head>
+
+<body>
+    <div>
+        <form method="POST" action="{% url 'insert' %}">
+            {%csrf_token%}
+            <label for="work">Enter the work:</label>
+            <input type="text" id="work" name="work" required>
+            <button type="submit">insert</button>
+        </form>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>Tasks</th>
+                <th>update</th>
+                <th>delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if data %}
+            {%for m in data%}
+
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{m.1}}</td>
+                <form method="POST" action="{% url 'update'%}">
+                    {%csrf_token%}
+                    <input type="hidden" name="id" value="{{ m.0 }}">
+                    <input type="hidden" name="work" value="{{m.1}}">
+                    <td><button type="submit">update</button></td>
+                </form>
+                <form method="POST" action="{%url 'delete'%}">
+                    {%csrf_token%}
+                    <input type="hidden" name="id" value="{{ m.0 }}">
+                    <td><button type="submit">delete</button></td>
+                </form>
+            </tr>
+
+            {% endfor %}
+            {%endif%}
+        </tbody>
+    </table>
+    <div>
+        <button onclick="window.location.href='{% url 'todo'%}'">Logout</button>
+    </div>
+
+
+</body>
+
+</html>
